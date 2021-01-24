@@ -6,8 +6,13 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.set("view engine", "ejs");
+
 app.get("/", function(req, res){
-    res.sendFile(__dirname + "/index.html");
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const now = new Date();
+    var day = now.getDay();
+    res.render('list', {DAY:days[day], DAYNO:day});
 });
 
 

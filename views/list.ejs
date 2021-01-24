@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+
+<body>
+
+    <% if ( DAYNO % 6 === 0) { %>
+    <h1 style="color: green;">Today is <%= DAY %></h1>
+    <p>Jolly it's Weekend</p>
+    <% } else { %>
+    <h1 style="color: red;">Today is <%= DAY %></h1>
+    <p>Boo!! It's Weekday</p>
+    <% } %>
+</body>
+
+</html>
