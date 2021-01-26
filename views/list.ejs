@@ -8,14 +8,18 @@
 </head>
 
 <body>
-
-    <% if ( DAYNO % 6 === 0) { %>
-    <h1 style="color: green;">Today is <%= DAY %></h1>
-    <p>Jolly it's Weekend</p>
-    <% } else { %>
-    <h1 style="color: red;">Today is <%= DAY %></h1>
-    <p>Boo!! It's Weekday</p>
-    <% } %>
+    <h1>Today is <%= DAY %></h1>
+    <ul>
+<!--    <li>Garlic</li> -->
+        <% for( let i = 0; i < ITEM.length; i++ ) { %>
+            <li><%= ITEM[i] %></li>
+        <% } %>
+    </ul>
+    <form action="/" method="POST">
+        <input type="text" name="newItem" placeholder="Type anything">
+        <button type="submit">Add</button>
+    </form>
+   
 </body>
 
 </html>
