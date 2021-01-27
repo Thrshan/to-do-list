@@ -50,7 +50,7 @@ app.post("/clear", function (req, res) {
 app.post("/delete", function (req, res) {
     let delIndx = req.param('index');
     items.splice(delIndx, 1);
-    res.sendStatus(202);
+    res.sendStatus(202);  // A ajex request canno't redireect an page. So just sending an response.
 });
 
 app.listen(3000, function () {
