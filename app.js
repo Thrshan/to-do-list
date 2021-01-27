@@ -47,6 +47,12 @@ app.post("/clear", function (req, res) {
     res.redirect("/");
 });
 
+app.post("/delete", function (req, res) {
+    let delIndx = req.param('index');
+    items.splice(delIndx, 1);
+    res.sendStatus(202);
+});
+
 app.listen(3000, function () {
     console.log("Server started at port 3000");
 });
