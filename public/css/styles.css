@@ -8,11 +8,12 @@ html {
 h1 {
   color: #fff;
   padding: 10px;
+  margin-bottom: 0;
 }
 
 .box {
   max-width: 400px;
-  margin: 50px auto;
+  margin: 50px auto 0;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
@@ -21,6 +22,9 @@ h1 {
 #heading {
   background-color: #A683E3;
   text-align: center;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+  z-index: 2;
 }
 
 .item {
@@ -111,4 +115,40 @@ footer {
   transform: scale(1.1);
   position: absolute;
   right: 5%;
+}
+
+.category {
+  width: 100%;
+  height: 5px;
+  margin: 0;
+  background-color: brown;
+  border-radius: 0 0 5px 5px;
+  position: absolute;
+  padding: 0;
+  text-align: center;
+  transition: all 300ms ease-in-out;
+}
+
+.category:hover{
+  height: 35px;
+  position: absolute;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+.category p:hover {
+  transform: translateY(-13px);
+}
+.cover {
+  margin: 50px auto;
+  max-width: 400px;
+  padding-bottom: 5px;
+  position: relative;
+  z-index: 0;
+}
+.category p {
+  transform: translateY(-40px);
+  transition: all 300ms ease-in-out;
+  color: white;
+  position: relative;
+  z-index: 1;
 }

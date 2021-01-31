@@ -15,6 +15,22 @@ app.set("view engine", "ejs");
 let items = ["Egg", "Chicken", "Onion", "Butter"]; // Initiates the list with these elements(in html page), Then more elements can be added
 //  Since items is outside any scope it is global variable. It can be accessed any where.
 // And it executes even before calling any function.
+let workItems = ["Check Mail"];
+
+const colors = ["RebeccaPurple", "MediumSpringGreen", "OldLace", "LightSalmon", "Indigo", "DimGrey", "Chocolate"];
+let pickedColors = []
+function pickColor() {
+    let randNo = Math.floor(Math.random()*colors.length);
+    if (pickedColors.includes(colors[randNo])){
+        pickColor();
+    } else {
+    pickedColors.push(colors[randNo]);
+    return colors[randNo];
+    }
+}
+
+const homeColor = pickColor();
+const workColor = pickColor();
 
 app.get("/", function (req, res) {
     let options = {
@@ -28,7 +44,28 @@ app.get("/", function (req, res) {
     let day = now.toLocaleDateString("US-EN", options);
     res.render('list', {
         DAY: day,
-        ITEM: items
+        ITEM: items,
+        CATEG: "Home",
+        COLOR: homeColor
+    });
+});
+
+
+app.get("/work", function (req, res) {
+    let options = {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+    };
+    const now = new Date();
+    // let day = new Intl.DateTimeFormat("US-EN", options).format(now); // Another way of formating date, The result will be the same.
+    let day = now.toLocaleDateString("US-EN", options);
+    res.render('list', {
+        DAY: day,
+        ITEM: workItems,
+        CATEG: "Work",
+        COLOR: workColor
     });
 });
 
@@ -37,14 +74,24 @@ app.post("/", function (req, res) {
     if (listInput === "") {
         // Alert
     } else {
-        items.push(listInput);
+        if (req.body.list === "Work") {
+            workItems.push(listInput);
+            res.redirect("/work");
+        } else {
+            items.push(listInput);
+            res.redirect("/"); // It redirect to home route, There the page refresh with the new item element. Since the new iteme element is in the array now.
+        }
     }
-    res.redirect("/"); // It redirect to home route, There the page refresh with the new item element. Since the new iteme element is in the array now.
 });
 
 app.post("/delete", function (req, res) {
     let delIndx = req.query.index;
-    items.splice(delIndx, 1);
+    let delCategory = req.query.category;
+    if (delCategory === "Work") {
+        workItems.splice(delIndx, 1);
+    } else {
+        items.splice(delIndx, 1);
+    }
     res.sendStatus(200);  // A ajex request canno't redireect an page. So just sending an response.
 });
 

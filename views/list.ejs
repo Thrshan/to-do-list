@@ -9,22 +9,28 @@
 </head>
 
 <body>
+    <div class="cover">
     <div class="box" id="heading">
         <h1><%= DAY %></h1>
     </div>
-
+      <div class = "category" style="background-color: <%= COLOR %>">
+          <p><strong><%= CATEG %></strong></p>
+        </div>
+    </div>
+    
+  
     <div class="box">
         <% for( let i = 0; i < ITEM.length; i++ ) { %>
         <div class="item">
             <input type="checkbox">
             <p><%= ITEM[i] %></p>
-            <img src="icons/trash.svg" class="delete-icon" width="5%" name="<%= i %>">
+            <img src="icons/trash.svg" class="delete-icon" width="5%" name="<%= CATEG %>" value="<%= i %>">
         </div>
         <% } %>
 
         <form action="/" class="item" method="POST">
             <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-            <button type="submit">+</button>
+            <button type="submit" name="list" value="<%= CATEG %>">+</button>
         </form>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
