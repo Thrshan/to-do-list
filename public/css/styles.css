@@ -101,6 +101,14 @@ footer {
 }
 
 .delete-icon {
+  transition: all 0.2s;
+  position: absolute;
+  right: 5%;
+}
+
+.delete-icon:hover {
+  transition: all 0.2s;
+  transform: scale(1.1);
   position: absolute;
   right: 5%;
 }

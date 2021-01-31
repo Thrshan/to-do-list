@@ -10,11 +10,10 @@
 
 <body>
     <div class="box" id="heading">
-        <h1>Today is <%= DAY %></h1>
+        <h1><%= DAY %></h1>
     </div>
 
     <div class="box">
-        <!--    <li>Garlic</li> -->
         <% for( let i = 0; i < ITEM.length; i++ ) { %>
         <div class="item">
             <input type="checkbox">
@@ -27,11 +26,6 @@
             <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
             <button type="submit">+</button>
         </form>
-        <!--
-        <form action="/clear" method="POST" class="hidden">
-            <button type="submit" class="hidden">Clear last</button>
-        </form>
-        -->
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script/script.js" charset="utf-8"></script>
