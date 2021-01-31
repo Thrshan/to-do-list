@@ -42,9 +42,10 @@ app.post("/", function (req, res) {
     res.redirect("/"); // It redirect to home route, There the page refresh with the new item element. Since the new iteme element is in the array now.
 });
 
-app.post("/clear", function (req, res) {
-    items.pop();
-    res.redirect("/");
+app.post("/delete", function (req, res) {
+    let delIndx = req.query.index;
+    items.splice(delIndx, 1);
+    res.sendStatus(200);  // A ajex request canno't redireect an page. So just sending an response.
 });
 
 app.listen(3000, function () {
