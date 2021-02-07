@@ -2,6 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const date = require(__dirname + "/date.js")
 
 const app = express();
 app.use(bodyParser.urlencoded({
@@ -12,10 +13,10 @@ app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 
-let items = ["Egg", "Chicken", "Onion", "Butter"]; // Initiates the list with these elements(in html page), Then more elements can be added
+const items = ["Egg", "Chicken", "Onion", "Butter"]; // Initiates the list with these elements(in html page), Then more elements can be added
 //  Since items is outside any scope it is global variable. It can be accessed any where.
 // And it executes even before calling any function.
-let workItems = ["Check Mail"];
+const workItems = ["Check Mail"];
 
 const colors = ["RebeccaPurple", "MediumSpringGreen", "OldLace", "LightSalmon", "Indigo", "DimGrey", "Chocolate"];
 let pickedColors = []
@@ -33,15 +34,7 @@ const homeColor = pickColor();
 const workColor = pickColor();
 
 app.get("/", function (req, res) {
-    let options = {
-        weekday: "long",
-        year: "numeric",
-        month: "short",
-        day: "numeric"
-    };
-    const now = new Date();
-    // let day = new Intl.DateTimeFormat("US-EN", options).format(now); // Another way of formating date, The result will be the same.
-    let day = now.toLocaleDateString("US-EN", options);
+    let day = date.getDate();
     res.render('list', {
         DAY: day,
         ITEM: items,
@@ -52,21 +45,17 @@ app.get("/", function (req, res) {
 
 
 app.get("/work", function (req, res) {
-    let options = {
-        weekday: "long",
-        year: "numeric",
-        month: "short",
-        day: "numeric"
-    };
-    const now = new Date();
-    // let day = new Intl.DateTimeFormat("US-EN", options).format(now); // Another way of formating date, The result will be the same.
-    let day = now.toLocaleDateString("US-EN", options);
+    let day = date.getDate();
     res.render('list', {
         DAY: day,
         ITEM: workItems,
         CATEG: "Work",
         COLOR: workColor
     });
+});
+
+app.get("/about", function(req, res) {
+    res.render("about");
 });
 
 app.post("/", function (req, res) {

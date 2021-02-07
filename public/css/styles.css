@@ -98,6 +98,11 @@ footer {
   color: white;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  /* Height of the footer */
 }
 
 .hidden {
@@ -127,17 +132,18 @@ footer {
   padding: 0;
   text-align: center;
   transition: all 300ms ease-in-out;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
-.category:hover{
+.category:hover {
   height: 35px;
   position: absolute;
-  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
 .category p:hover {
   transform: translateY(-13px);
 }
+
 .cover {
   margin: 50px auto;
   max-width: 400px;
@@ -145,6 +151,7 @@ footer {
   position: relative;
   z-index: 0;
 }
+
 .category p {
   transform: translateY(-40px);
   transition: all 300ms ease-in-out;
